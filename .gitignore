@@ -1,0 +1,4 @@
+exe #忽略可执行文件
+.gitigonre    #忽略.gitignore文件
+/obj/*.o　#忽略所有的目标文件
+*~　#忽略所有的缓冲文件

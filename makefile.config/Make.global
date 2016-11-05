@@ -1,0 +1,12 @@
+CC := gcc
+CFLAGS := -O2 -Wall
+LDFLAGS = -lm
+
+.PHONY : subdirs $(SUBDIRS)
+subdirs : $(SUBDIRS)
+$(SUBDIRS) :
+	$(MAKE) -C $@ all
+
+%.o : %.c
+	$(CC) $(CFLAGS) $(INCLUDES) -c $^ -o $(OBJDIRS)/$@
+
