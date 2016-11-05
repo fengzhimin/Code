@@ -25,7 +25,7 @@ char *CreateLogInfo(const char* logInfo, const char *file, const char *function,
 
 /**********************************
  *function: 插入日志
- *return: ０＝成功　　-1 = 失败
+ *return: -1＝成功　　0 = 失败
  *@para logName：日志的文件名
  *@para logInfo: 日志的信息
  *@para file: 为当前文件名称(__FILE)

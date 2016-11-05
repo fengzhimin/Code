@@ -1,5 +1,5 @@
-SUBDIRS = log common resource
-OBJECTS = main.o
+SUBDIRS = 
+OBJECTS = port.o
 
 all : subdirs $(OBJECTS)
 

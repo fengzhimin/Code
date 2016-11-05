@@ -1,7 +1,7 @@
 /******************************************************
 * Author       : fengzhimin
 * Create       : 2016-11-04 12:47
-* Last modified: 2016-11-05 01:46
+* Last modified: 2016-11-06 00:58
 * Email        : 374648064@qq.com
 * Filename     : logOper.c
 * Description  : 
@@ -10,6 +10,7 @@
 #include "log/logOper.h"
 #include "common/fileOper.h"
 #include "common/dateOper.h"
+#include "config.h"
 #include <stdlib.h>
 
 char *CreateLogInfo(const char *logInfo, const char *file, const char* function, const int line)
@@ -44,6 +45,7 @@ char *CreateLogInfo(const char *logInfo, const char *file, const char* function,
 
 int WriteLog(const char* logName, const char* logInfo, const char *file, const char* function, const int line)
 {
+#if OPENLOG
 	FILE * _fd = OpenFile(logName, "a");
 	if(NULL == _fd)
 		return -1;
@@ -55,8 +57,9 @@ int WriteLog(const char* logName, const char* logInfo, const char *file, const c
 	free(_mergeInfo);
 	CloseFile(_fd);
 
-	if(_ret_write == -1)
-		return -1;
-	else
+	if(_ret_write != -1)
 		return 0;
+#endif
+
+	return -1;
 }

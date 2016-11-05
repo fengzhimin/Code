@@ -1,5 +1,5 @@
-SUBDIRS = log common resource
-OBJECTS = main.o
+SUBDIRS = network memeory process device
+OBJECTS = 
 
 all : subdirs $(OBJECTS)
 
