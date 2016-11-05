@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdbool.h>
 #include "log/logOper.h"
+#include "common/fileOper.h"
 
 bool isNum(char *_ch)
 {
@@ -50,7 +51,17 @@ int main(int argc, char* argv[])
     fclose(_fd);
 	*/
 
-	WriteLog("logInfo.log", "test\n", __FILE__, __FUNCTION__, __LINE__);	
+	WriteLog("logInfo.log", "test\n", __FILE__, __FUNCTION__, __LINE__);
+	FILE* _fd = OpenFile("log.log", "r");
+	if(NULL == _fd)
+		perror("打开文件失败!");
+	char strline[100];
+	int _ret  = ReadFile(_fd, strline, 100);
+	if(-1 != _ret)
+		printf("Errno: %s\n", strerror(_ret));
+	else
+		printf("%s\n", strline);
+
     return 0;
 
 }

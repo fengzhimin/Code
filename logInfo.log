@@ -1,6 +1,19 @@
-[;.��2016-11- 5  1:19: 3]file: logOper.cfunction: CreateLogInfoline: 24test
-[����2016-11-05 01:21:16]file: logOper.cfunction: CreateLogInfoline: 24test
-x��{[2016-11-05 01:29:07]  file: logOper.c  function: CreateLogInfo  line: 25  操作：test
-[2016-11-05 01:30:02]  file: logOper.c  function: CreateLogInfo  line: 25  操作：test
-[2016-11-05 01:42:08]  file: main  function: main.c  line: 53  操作：test
-[2016-11-05 01:44:59]  file: main  function: main.c  line: 53  操作：test
+[2016-11-05 15:37:43]  file: main.c  function: main  line: 54  操作：test
+[2016-11-05 15:38:39]  file: main.c  function: main  line: 54  操作：test
+[2016-11-05 15:39:01]  file: main.c  function: main  line: 54  操作：test
+[2016-11-05 15:45:36]  file: main.c  function: main  line: 54  操作：test
+[2016-11-05 15:46:16]  file: main.c  function: main  line: 54  操作：test
+[2016-11-05 15:46:58]  file: main.c  function: main  line: 54  操作：test
+[2016-11-05 15:51:28]  file: main.c  function: main  line: 54  操作：test
+[2016-11-05 15:54:54]  file: main.c  function: main  line: 54  操作：test
+[2016-11-05 15:56:13]  file: main.c  function: main  line: 54  操作：test
+[2016-11-05 15:56:57]  file: main.c  function: main  line: 54  操作：test
+[2016-11-05 15:57:54]  file: main.c  function: main  line: 54  操作：test
+[2016-11-05 15:58:17]  file: main.c  function: main  line: 54  操作：test
+[2016-11-05 16:00:22]  file: main.c  function: main  line: 54  操作：test
+[2016-11-05 16:02:31]  file: main.c  function: main  line: 54  操作：test
+[2016-11-05 16:05:47]  file: main.c  function: main  line: 54  操作：test
+[2016-11-05 16:08:31]  file: main.c  function: main  line: 54  操作：test
+[2016-11-05 16:09:30]  file: main.c  function: main  line: 54  操作：test
+[2016-11-05 16:10:37]  file: main.c  function: main  line: 54  操作：test
+[2016-11-05 16:10:53]  file: main.c  function: main  line: 54  操作：test
