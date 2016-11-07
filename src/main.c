@@ -3,6 +3,8 @@
 #include <stdbool.h>
 #include "log/logOper.h"
 #include "common/fileOper.h"
+#include "common/dirOper.h"
+#include "config.h"
 
 bool isNum(char *_ch)
 {
@@ -16,6 +18,7 @@ bool isNum(char *_ch)
 
     return true;
 }
+
 
 int main(int argc, char* argv[])
 {
@@ -52,6 +55,7 @@ int main(int argc, char* argv[])
 	*/
 
 	WriteLog("logInfo.log", "test\n", __FILE__, __FUNCTION__, __LINE__);
+	/*
 	FILE* _fd = OpenFile("log.log", "r");
 	if(NULL == _fd)
 		perror("打开文件失败!");
@@ -63,5 +67,13 @@ int main(int argc, char* argv[])
 		printf("%s\n", strline);
 
     return 0;
+	*/
+	char configfilepath[CONFIG_FILE_MAX_NUM][FILE_PATH_MAX_LENGTH];
+	for(int i = 0; i < CONFIG_FILE_MAX_NUM; i++)
+		memset(configfilepath[i], 0, FILE_PATH_MAX_LENGTH);
 
+	int _ret = AutoFindConfigFile("/home/fzm/Code", config_type, configfilepath);
+	for(int i = 0; i < CONFIG_FILE_MAX_NUM; i++)
+		printf("%s\n", configfilepath[i]);
+	//printf("%d\n", GetConfig_TypeNum());
 }

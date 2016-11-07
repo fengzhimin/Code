@@ -1,5 +1,5 @@
 SUBDIRS = 
-OBJECTS = dateOper.o fileOper.o
+OBJECTS = dateOper.o fileOper.o dirOper.o
 
 all : subdirs $(OBJECTS)
 
