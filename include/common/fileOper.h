@@ -1,7 +1,7 @@
 /******************************************************
 * Author       : fengzhimin
 * Create       : 2016-11-04 10:23
-* Last modified: 2016-11-05 15:54
+* Last modified: 2016-11-12 01:06
 * Email        : 374648064@qq.com
 * Filename     : fileOper.h
 * Description  : 文件操作的头文件
@@ -48,8 +48,8 @@ int ReadFile(FILE *fd, char *data, size_t size);
 
 
 /**********************************
- *function: 从文件中读取一行内容　
- *return: -1 = 成功  0 = EOF   errno = 失败　　通过strerror函数来获取具体的错误内容
+ *function: 从文件中读取一行内容
+ *return: -1 = 读取成功　　　0 = 文件末尾
  *@para fd: 文件指针
  *@para data: 存储读取的数据
 ***********************************/
@@ -62,5 +62,14 @@ int ReadLine(FILE *fd, char *data);
  * @oara fd: 要关闭文件的Id号
 *********************************/
 int CloseFile(FILE *fd);
+
+
+/******************************
+ * function: 过滤注释行
+ * return: void
+ * @para fileName：要被过滤的文件名
+ * @para fileNameCopy：过滤以后的数据存放的文件 
+******************************/
+void RemoveNote(char *fileName, char *fileNameCopy);
 
 #endif

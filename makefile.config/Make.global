@@ -1,7 +1,10 @@
 CC := gcc
-CFLAGS := -O2 -Wall
+ifeq ($(compile), debug)
+	CFLAGS := -O2 -Wall -g
+else
+	CFLAGS := -O2 -Wall
+endif
 LDFLAGS = -lm
-
 .PHONY : subdirs $(SUBDIRS)
 subdirs : $(SUBDIRS)
 $(SUBDIRS) :

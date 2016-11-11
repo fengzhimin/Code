@@ -13,6 +13,11 @@
 #include <stdio.h>
 
 /**********************************
+ * function: 宏定义实现默认参数函数
+**********************************/
+#define RecordLog(logInfo)   WriteLog("logInfo.log", logInfo, __FILE__, __FUNCTION__, __LINE__)
+
+/**********************************
  *function: 合成需要记录的日志信息
  *return: 生成的日志信息
  *@para logInfo:　需要写入的日志信息

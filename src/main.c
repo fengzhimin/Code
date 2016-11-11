@@ -6,20 +6,6 @@
 #include "common/dirOper.h"
 #include "config.h"
 
-bool isNum(char *_ch)
-{
-    int _length = strlen(_ch);
-    printf("%d\n", _length);
-    for(int i = 0; i < _length - 1; i++)
-    {
-        if(_ch[i] < '0' || _ch[i] > '9')
-            return false;
-    }
-
-    return true;
-}
-
-
 int main(int argc, char* argv[])
 {
 	/*
@@ -54,7 +40,7 @@ int main(int argc, char* argv[])
     fclose(_fd);
 	*/
 
-	WriteLog("logInfo.log", "test\n", __FILE__, __FUNCTION__, __LINE__);
+	//WriteLog("logInfo.log", "test\n", __FILE__, __FUNCTION__, __LINE__);
 	/*
 	FILE* _fd = OpenFile("log.log", "r");
 	if(NULL == _fd)
@@ -72,8 +58,10 @@ int main(int argc, char* argv[])
 	for(int i = 0; i < CONFIG_FILE_MAX_NUM; i++)
 		memset(configfilepath[i], 0, FILE_PATH_MAX_LENGTH);
 
-	int _ret = AutoFindConfigFile("/home/fzm/Code", config_type, configfilepath);
+	int _ret = AutoFindConfigFile("/etc", config_type, configfilepath);
 	for(int i = 0; i < CONFIG_FILE_MAX_NUM; i++)
 		printf("%s\n", configfilepath[i]);
+	RemoveNote(configfilepath[0], strrchr(configfilepath[0], '/')+1);
+	printf("%s%s\n", "生成文件：", (strrchr(configfilepath[0], '/')+1));
 	//printf("%d\n", GetConfig_TypeNum());
 }

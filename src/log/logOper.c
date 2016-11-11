@@ -17,14 +17,12 @@ char *CreateLogInfo(const char *logInfo, const char *file, const char* function,
 {
 	char _date[100];
 	GetLocalTime(_date, 0);  //获取当前系统时间
-	char _function[50] = "function: ";
-	strcat(_function, function);   //获取正在执行的函数名
-	char _file[50] = "file: ";
-	strcat(_file, file);           //获取正在执行的文件名
-	char _line[50] = "line: ";
-	char _strLine[10];
-	sprintf(_strLine, "%d", line);   
-	strcat(_line, _strLine);     //获取正在执行的行数
+	char _function[50];
+	sprintf(_function, "%s%20s%s", " [函数:", function, "] ");    //获取正在执行的函数名
+	char _file[50];
+	sprintf(_file, "%s%15s%s", "[文件:", file, "] ");           //获取正在执行的文件名
+	char _line[50];
+	sprintf(_line, "%s%4d%s", "[行数:", line, "] ");          //获取正在执行的行数
 	
 	int _size = strlen(logInfo) + strlen(_date) + strlen(_function) + strlen(_file) + strlen(_line) + 20;
 	char *mergeInfo = malloc(_size);
@@ -33,9 +31,7 @@ char *CreateLogInfo(const char *logInfo, const char *file, const char* function,
 	strcat(mergeInfo, _date);
 	strcat(mergeInfo, "]  ");
 	strcat(mergeInfo, _file);
-	strcat(mergeInfo, "  ");
-	strcat(mergeInfo,  _function);
-	strcat(mergeInfo, "  ");
+	strcat(mergeInfo, _function);
 	strcat(mergeInfo, _line);
 	strcat(mergeInfo, "  操作：");
 	strcat(mergeInfo, logInfo);

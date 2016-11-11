@@ -36,7 +36,7 @@ int JudgeConfFile(char *path, const char type[][20], char configfilepath[][FILE_
 
 /***************************************
  *function: 获取一个文件夹下所有的指定文件类型的文件路径和名称
- *return: -1 = 为超过最大配置文件个数  -2 = 输入的不是文件夹　point最大值(>0)
+ *return: -1 = 为超过最大配置文件个数  -2 = 输入的不是文件夹　 -3 = 打开文件夹失败    point最大值(>0)
  *@para path:　需要查询的文件夹的绝对路径
  *@para type:　需要查询的文件类型
  *@para configfilepath: 存储查询的结果
