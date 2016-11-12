@@ -5,6 +5,7 @@
 #include "common/fileOper.h"
 #include "common/dirOper.h"
 #include "config.h"
+#include "resource/network/port.h"
 
 int main(int argc, char* argv[])
 {
@@ -58,10 +59,14 @@ int main(int argc, char* argv[])
 	for(int i = 0; i < CONFIG_FILE_MAX_NUM; i++)
 		memset(configfilepath[i], 0, FILE_PATH_MAX_LENGTH);
 
-	int _ret = AutoFindConfigFile("/etc", config_type, configfilepath);
-	for(int i = 0; i < CONFIG_FILE_MAX_NUM; i++)
+	int _ret = AutoFindConfigFile("/home/fzm/Code", config_type, configfilepath);
+	for(int i = 0; i < _ret; i++)
 		printf("%s\n", configfilepath[i]);
-	RemoveNote(configfilepath[0], strrchr(configfilepath[0], '/')+1);
-	printf("%s%s\n", "生成文件：", (strrchr(configfilepath[0], '/')+1));
+
+	ConfigInfo _configInfo[100];
+	int configInfo_Num = GetConfigInfoFromConfigFile(_configInfo, 100, port_symbol, GetPort_SymbolNum(), configfilepath, _ret);
+	GetPortInfoFromConfigFile(_configInfo, configInfo_Num, "resource/network/test.port");
+	//RemoveNote(configfilepath[0], strrchr(configfilepath[0], '/') + 1);
+	//printf("%s%s\n", "生成文件：", (strrchr(configfilepath[0], '/')+1));
 	//printf("%d\n", GetConfig_TypeNum());
 }

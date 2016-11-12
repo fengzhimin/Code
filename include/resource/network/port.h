@@ -10,13 +10,25 @@
 #ifndef __PORT_H__
 #define __PORT_H__
 
-extern char port_symbol[][20];    //配置文件中用于标示端口的字段
+#include "config.h"
+#include <stdbool.h>
+
+extern char port_symbol[][CONFIG_KEY_MAX_NUM];    //配置文件中用于标示端口的字段
 
 /******************************
  * function: 获取port_symbol的个数
  * return: 个数
 ******************************/
 int GetPort_SymbolNum();
+
+/*********************************
+ * function: 获取配置文件中的端口项
+ * return: true = 是端口项　　false = 不是端口项
+ * @para _portInfo: 端口配置信息数组
+ * @para _portInfo_num: _portInfo_num的大小
+ * @para portFileName: 存放端口的文件名称
+**********************************/
+bool GetPortInfoFromConfigFile(ConfigInfo _portInfoi[], int _portInfo_num, char *portFileName);
 
 
 #endif

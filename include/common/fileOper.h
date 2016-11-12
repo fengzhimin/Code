@@ -17,7 +17,7 @@
  * function: 打开文件操作
  * return: fd=成功  NULL=失败并且设置errno值 通过strerror函数来获取具体错误内容
  * @para fileName: 打开的文件名
- * @para mode: 打开文件的模式
+ * @para  mode: 打开文件的模式
  *        mode: r  只读方式打开文件
 	      mode: r+ 读写方式打开，将文件指针定位到文件头
 	      mode: w  只写方式打开

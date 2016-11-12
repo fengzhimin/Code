@@ -1,7 +1,7 @@
 /******************************************************
 * Author       : fengzhimin
 * Create       : 2016-11-04 12:35
-* Last modified: 2016-11-12 01:36
+* Last modified: 2016-11-12 12:23
 * Email        : 374648064@qq.com
 * Filename     : fileOper.c
 * Description  : 
@@ -27,7 +27,8 @@ int WriteFile(FILE *fd, char *data)
 	size_t _data_size;
 	_data_size = strlen(data);
 	_ret_value = fwrite(data, sizeof(char), _data_size, fd);
-	if(_ret_value != 1)
+	fflush(fd);
+	if(_ret_value != _data_size)
 		return errno;
 	else
 		return -1;
@@ -50,7 +51,7 @@ int ReadLine(FILE *fd, char *data)
 	int n = 0;
 	while((_ch = getc(fd)) != EOF)
 	{
-		if(n >= 256)
+		if(n >= LINE_CHAR_MAX_NUM)
 		{
 			RecordLog("配置文件的一行数据大小超过预设大小!\n");
 			return -1;
@@ -86,10 +87,10 @@ void RemoveNote(char *fileName, char *fileNameCopy)
 		RecordLog(error_info);
 		return ;
 	}
-	char lineInfo[256];
+	char lineInfo[LINE_CHAR_MAX_NUM];
 	while(!feof(fd))
 	{
-		memset(lineInfo, 0, 256);
+		memset(lineInfo, 0, LINE_CHAR_MAX_NUM);
 		ReadLine(fd, lineInfo);
 		if(!JudgeNote(lineInfo))
 			WriteFile(fdCopy, lineInfo);	

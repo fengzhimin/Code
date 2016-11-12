@@ -24,3 +24,4 @@ int GetNote_SymbolNum()
 {
 	return sizeof(note_symbol)/sizeof(note_symbol[0]);
 }
+
