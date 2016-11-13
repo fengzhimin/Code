@@ -1,5 +1,5 @@
 SUBDIRS = 
-OBJECTS = port.o
+OBJECTS = port.o conflictCheck.o
 
 all : subdirs $(OBJECTS)
 

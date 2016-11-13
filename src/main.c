@@ -6,6 +6,7 @@
 #include "common/dirOper.h"
 #include "config.h"
 #include "resource/network/port.h"
+#include "resource/network/conflictCheck.h"
 
 int main(int argc, char* argv[])
 {
@@ -59,13 +60,18 @@ int main(int argc, char* argv[])
 	for(int i = 0; i < CONFIG_FILE_MAX_NUM; i++)
 		memset(configfilepath[i], 0, FILE_PATH_MAX_LENGTH);
 
-	int _ret = AutoFindConfigFile("/home/fzm/Code", config_type, configfilepath);
+	int _ret = AutoFindConfigFile(argv[1], config_type, configfilepath);
 	for(int i = 0; i < _ret; i++)
 		printf("%s\n", configfilepath[i]);
 
 	ConfigInfo _configInfo[100];
 	int configInfo_Num = GetConfigInfoFromConfigFile(_configInfo, 100, port_symbol, GetPort_SymbolNum(), configfilepath, _ret);
-	GetPortInfoFromConfigFile(_configInfo, configInfo_Num, "resource/network/test.port");
+	char _configpath[100];
+	sprintf(_configpath, "%s/%s", "resource/network", argv[2]);
+	GetPortInfoFromConfigFile(_configInfo, configInfo_Num, _configpath);
+	CheckPort(argv[2]);
+	char *test = "sdfsdf=123123";
+	printf("%d\n", ExtractNumFromStr(test));
 	//RemoveNote(configfilepath[0], strrchr(configfilepath[0], '/') + 1);
 	//printf("%s%s\n", "生成文件：", (strrchr(configfilepath[0], '/')+1));
 	//printf("%d\n", GetConfig_TypeNum());

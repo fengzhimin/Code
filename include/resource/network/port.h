@@ -30,5 +30,13 @@ int GetPort_SymbolNum();
 **********************************/
 bool GetPortInfoFromConfigFile(ConfigInfo _portInfoi[], int _portInfo_num, char *portFileName);
 
+/********************************
+ * function: 从端口的配置文件中获取端口的value
+ * return: true = 获取成功　　　false = 失败
+ * @para _portFilePath: 端口文件的路径
+ * @para _portValue: 存放获取后的Value值
+ * @para _portValueNum: _portValue数组的大小
+********************************/
+bool GetPortValue(char *_portFilePath, int *_portValue, int _portValueNum);
 
 #endif

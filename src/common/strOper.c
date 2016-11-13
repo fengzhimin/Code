@@ -151,3 +151,18 @@ int GetConfigInfoFromConfigFile(ConfigInfo _configInfo[], int _configInfo_num, c
 
 	return _real_configInfoNum;
 }
+
+
+int ExtractNumFromStr(char *_str)
+{
+	int _str_length = strlen(_str);
+	int _ret = 0;
+	for(int i = 0; i < _str_length; i++)
+		if(_str[i] >= '0' && _str[i] <= '9')
+			_ret = _ret*10 + _str[i] - '0';
+
+	if(_ret > 0)
+		return _ret;
+	else
+		return -1;
+}

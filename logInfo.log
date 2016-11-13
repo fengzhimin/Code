@@ -1,2 +1,0 @@
-[2016-11-13 00:02:47]  [文件:         port.c]  [函数:GetPortInfoFromConfigFile] [行数:  41]   操作：写入: 8080 失败！ 错误信息： Success
-[2016-11-13 00:04:24]  [文件:         port.c]  [函数:GetPortInfoFromConfigFile] [行数:  41]   操作：写入: 8080 失败！ 错误信息： Success

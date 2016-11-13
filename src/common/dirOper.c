@@ -81,7 +81,7 @@ int FindFileByType(char *path, const char type[][20], char configfilepath[][FILE
 	if(pdir == NULL)       //打开文件夹失败
 	{
 		char error_info[200];
-		sprintf(error_info, "%s%s%s%s%s", "打开文件: ", temp1, " 失败！ 错误信息： ", strerror(errno), "\n");
+		sprintf(error_info, "%s%s%s%s%s", "打开文件夹: ", temp1, " 失败！ 错误信息： ", strerror(errno), "\n");
 		RecordLog(error_info);
 		return -3;
 	}

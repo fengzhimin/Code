@@ -69,4 +69,11 @@ bool GetConfigInfo(char *_str, char _type[][CONFIG_KEY_MAX_NUM], int _type_num, 
 **********************************/
 int GetConfigInfoFromConfigFile(ConfigInfo _configInfo[], int _configInfo_num, char _type[][CONFIG_KEY_MAX_NUM], int _type_num, char _configfilepath[][FILE_PATH_MAX_LENGTH], int _configfilepathNum);
 
+
+/**********************************
+ * function: 提取字符串中的数字(只提取正整数)
+ * return: -1 = 没有数字  >=0 = 返回提取的数字
+ * @para _str: 要被提取的字符串
+***********************************/
+int ExtractNumFromStr(char *_str);
 #endif
