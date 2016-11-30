@@ -1,7 +1,7 @@
 /******************************************************
 * Author       : fengzhimin
 * Create       : 2016-11-09 11:40
-* Last modified: 2016-11-12 15:50
+* Last modified: 2016-11-30 11:53
 * Email        : 374648064@qq.com
 * Filename     : strOper.h
 * Description  : 字符串处理函数
@@ -58,16 +58,15 @@ bool GetConfigInfo(char *_str, char _type[][CONFIG_KEY_MAX_NUM], int _type_num, 
 
 
 /*********************************
- * function: 获取配置文件中的
+ * function: 获取配置文件中的配置项个数
  * return: -1 = 获取失败　　>0 = 配置项个数
  * @para _configInfo: 配置项的信息
- * @para _configInfo_num: 配置项的信息最大个数
  * @para _type: 配置项的类型
  * @para _type_num: 存储配置项类型数组的大小
  * @para _configfilepath: 配置文件数组
  * @para _configfilepathNum: 配置文件个数
 **********************************/
-int GetConfigInfoFromConfigFile(ConfigInfo _configInfo[], int _configInfo_num, char _type[][CONFIG_KEY_MAX_NUM], int _type_num, char _configfilepath[][FILE_PATH_MAX_LENGTH], int _configfilepathNum);
+int GetConfigInfoFromConfigFile(ConfigInfo _configInfo[], char _type[][CONFIG_KEY_MAX_NUM], int _type_num, char _configfilepath[][FILE_PATH_MAX_LENGTH], int _configfilepathNum);
 
 
 /**********************************

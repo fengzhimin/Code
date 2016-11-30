@@ -1,7 +1,7 @@
 /******************************************************
 * Author       : fengzhimin
 * Create       : 2016-11-06 00:44
-* Last modified: 2016-11-12 15:44
+* Last modified: 2016-11-26 16:29
 * Email        : 374648064@qq.com
 * Filename     : config.h
 * Descrip:q
@@ -14,6 +14,7 @@
 #include <stdio.h>
 
 #define OPENLOG 1    //1: 表示打开日志功能　　　0: 表示关闭日志功能
+#define SHOWINFO 3    //1：表示冲突信息存在result.out文件中　　２：打印冲突信息　　３：打印并且存储冲突信息
 
 #define CONFIG_FILE_MAX_NUM   100   //一个软件的最大配置文件个数由程序自动寻找配置文件
 

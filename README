@@ -2,18 +2,31 @@
 	首先在Code目录下新建一个obj文件夹
 	在代码的根目录执行make命令，会在代码的根目录里生成一个可执行文件exe，在obj目录下是生成的目标文件(release版本)
 	在代码的根目录执行make compile=debug, 会在代码的根目录里生成一个可执行文件exe, 在obj目录下是生成的目录文件(可调试debug版本)
-	在代码的根目录执行make kdbg, 会调试可执行文件exe
-	在根目录下执行make clean则会将生成的可执行文件和所有的目标文件删除，执行make cleanobj则会生成所有的目标文件
+	在代码的根目录执行make debug, 会调试可执行文件exe
+	在根目录下执行make clean则会将生成的可执行文件和所有的目标文件删除
+	在根目录下执行make cleanobj则会将生成的目标文件删除
+	在根目录下执行make cleanresult则会将resource/network/*下的所有软件配置项提取结果和检查结果result.out除
+	在根目录下执行make cleanlog则会删除临时的日志文件
+	在根目录下执行make cleanall则清楚所有的临时文件
 
 ＃工程结构
 	１、include目录里包含所有的头文件
+			common: 一些公用的函数头文件
+			log: 日志函数的头文件
+			resource
+				device: 关于设备资源的头文件
+				memeory: 关于内存资源的头文件
+				network: 关于网络资源的头文件
+				process: 关于进程资源的头文件
 	２、src目录是所有的源文件
+			common: 一些公用的函数源文件
+			log: 日志函数的源文件
+			resource
+				device: 关于设备资源的源文件
+				memeory: 关于内存资源的源文件
+				network: 关于网络资源的源文件
+				process: 关于进程资源的源文件
 	３、makefile_config目录是make的配置文件存放的目录
 	４、obj目录为所有临时的目标文件
-
-＃include目录结构
-
-
-＃src目录结构
-
-
+	５、resource软件资源列表
+			network: 存放软件网络资源的列表	

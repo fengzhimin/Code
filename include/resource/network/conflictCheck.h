@@ -15,7 +15,7 @@
 /**************************************
  * function: 检查端口冲突
  * return: true = 检查成功   false = 检查失败
- * @para _portFileName: 需要检查的软件端口存放的文件名
+ * @para _portFileName: 需要检查的软件端口存放的文件名(softwareName.port)
 ***************************************/
 bool CheckPort(char *_portFileName);
 

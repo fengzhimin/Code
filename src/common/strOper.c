@@ -1,7 +1,7 @@
 /******************************************************
 * Author       : fengzhimin
 * Create       : 2016-11-11 09:02
-* Last modified: 2016-11-12 15:57
+* Last modified: 2016-11-30 11:44
 * Email        : 374648064@qq.com
 * Filename     : strOper.c
 * Description  : 
@@ -101,6 +101,7 @@ bool GetConfigInfo(char *_str, char _type[][CONFIG_KEY_MAX_NUM], int _type_num, 
 			strcpy(_configInfo->key, _first_word);
 			for(int j = _next_char_begin_index; j < _str_length; j++)
 			{
+				//跳过key与value中间的字符
 				if(_str[j] == ' ' || _str[j] == '\t' || _str[j] == '=' || _str[j] == '\n')
 				{
 					if(temp_point)
@@ -121,7 +122,7 @@ bool GetConfigInfo(char *_str, char _type[][CONFIG_KEY_MAX_NUM], int _type_num, 
 	return false;
 }
 
-int GetConfigInfoFromConfigFile(ConfigInfo _configInfo[], int _configInfo_num, char _type[][CONFIG_KEY_MAX_NUM], int _type_num, char _configfilepath[][FILE_PATH_MAX_LENGTH], int _configfilepathNum)
+int GetConfigInfoFromConfigFile(ConfigInfo _configInfo[], char _type[][CONFIG_KEY_MAX_NUM], int _type_num, char _configfilepath[][FILE_PATH_MAX_LENGTH], int _configfilepathNum)
 {
 	int _real_configInfoNum = 0;
 	for(int i = 0; i < _configfilepathNum; i++)
@@ -139,7 +140,7 @@ int GetConfigInfoFromConfigFile(ConfigInfo _configInfo[], int _configInfo_num, c
 		{
 			memset(lineInfo, 0, LINE_CHAR_MAX_NUM);
 			ReadLine(fd, lineInfo);
-			if(!JudgeNote(lineInfo))
+			if(!JudgeNote(lineInfo))   //判断是否为注释行
 			{
 				if(GetConfigInfo(lineInfo, _type, _type_num, &_configInfo[_real_configInfoNum]))
 					_real_configInfoNum++;

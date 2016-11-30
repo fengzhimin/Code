@@ -9,18 +9,24 @@ export OBJDIRS = $(PROJECTPWD)/obj
 
 all : subdirs $(SUBDIRS)
 	$(CC) -o $(TARGET) $(OBJDIRS)/*.o $(LDFLAGS) $(INCLUDES)
-#	$(CC) -o $(TARGET) $(wildcard $(OBJDIRS)/*.o) $(LDFLAGS) $(INCLUDES)
 
-kdbg :
-	$(DEBUGTOOL) $(TARGET)
+debug :
+	make compile=debug
+	sudo $(DEBUGTOOL) $(TARGET)
 
 clean :
-	rm -f $(TARGET) $(OBJDIRS)/*
+	-rm -f $(TARGET) $(OBJDIRS)/*
+
+cleanresult :
+	-rm -f result.out resource/network/*
 
 cleanobj :
-	rm -f $(OBJDIRS)/*
+	-rm -f $(OBJDIRS)/*
 
 cleanlog :
 	-rm -f logInfo.log
+
+#清理整个工程临时文件
+cleanall : clean cleanresult cleanobj cleanlog
 
 include $(MAKEFILEINCLUDE)

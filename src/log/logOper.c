@@ -1,7 +1,7 @@
 /******************************************************
 * Author       : fengzhimin
 * Create       : 2016-11-04 12:47
-* Last modified: 2016-11-06 00:58
+* Last modified: 2016-11-30 11:28
 * Email        : 374648064@qq.com
 * Filename     : logOper.c
 * Description  : 
@@ -41,6 +41,7 @@ char *CreateLogInfo(const char *logInfo, const char *file, const char* function,
 
 int WriteLog(const char* logName, const char* logInfo, const char *file, const char* function, const int line)
 {
+	printf("%s", logInfo);   //终端及时显示信息
 #if OPENLOG
 	FILE * _fd = OpenFile(logName, "a");
 	if(NULL == _fd)

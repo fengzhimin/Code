@@ -1,7 +1,7 @@
 /******************************************************
 * Author       : fengzhimin
 * Create       : 2016-11-13 13:54
-* Last modified: 2016-11-13 13:54
+* Last modified: 2016-11-26 16:34
 * Email        : 374648064@qq.com
 * Filename     : conflictCheck.c
 * Description  : 
@@ -41,7 +41,7 @@ bool CheckPort(char *_portFileName)
 	char _portFilePath[100];
 	sprintf(_portFilePath, "%s/%s", dirCatalog, _portFileName);
 	int _portValue[50];
-	if(!GetPortValue(_portFilePath, _portValue, 50))
+	if(!GetPortValue(_portFilePath, _portValue, 50))   //获取要检查软件的端口值
 		return false;
 	char temp[FILE_PATH_MAX_LENGTH];
 	while((pdirent = readdir(pdir)) != NULL)
@@ -52,7 +52,7 @@ bool CheckPort(char *_portFileName)
 			continue; 
 		sprintf(temp, "%s/%s", dirCatalog, pdirent->d_name);
 		int temp_portValue[50];
-		if(!GetPortValue(temp, temp_portValue, 50))
+		if(!GetPortValue(temp, temp_portValue, 50))   //获取要比较软件的端口的值
 			continue;
 		for(int i = 0; i < 50; i++)
 		{
@@ -65,18 +65,25 @@ bool CheckPort(char *_portFileName)
 				if(_portValue[i] == temp_portValue[j])
 				{
 					int temp_length = strlen(_portFileName) - strlen(strrchr(_portFileName, '.'));
-					char temp_str1[50] = { 0 };
-					strncpy(temp_str1, _portFileName, temp_length);
+					char _softwareName1[50] = { 0 };
+					strncpy(_softwareName1, _portFileName, temp_length);    //提取被检查软件名
 					temp_length = strlen(pdirent->d_name) - strlen(strrchr(pdirent->d_name, '.'));
-					char temp_str2[50] = { 0 };
-					strncpy(temp_str2, pdirent->d_name, temp_length);	
+					char _softwareName2[50] = { 0 };
+					strncpy(_softwareName2, pdirent->d_name, temp_length);	//提取对比软件名
 					char _date[100];
 					GetLocalTime(_date, 0);  //获取当前系统时间
 					char _result[200];
-					sprintf(_result, "[%s]\t%s%s%s%s%s%d\n", _date, "软件: ", temp_str1, " 与软件: ", temp_str2, " 端口冲突，冲突端口号为：", _portValue[i]);
-					FILE *fd = OpenFile("result.out", "a+");
-					WriteFile(fd, _result);
-					CloseFile(fd);
+					sprintf(_result, "[%s]\t%s%s%s%s%s%d\n", _date, "软件: ", _softwareName1, " 与软件: ", _softwareName2, " 端口冲突，冲突端口号为：", _portValue[i]);
+					//冲突信息显示方式
+					if(1 == SHOWINFO || 3 == SHOWINFO)
+					{
+						FILE *fd = OpenFile("result.out", "a+");
+						WriteFile(fd, _result);
+						CloseFile(fd);
+					}
+
+					if(2 == SHOWINFO || 3 == SHOWINFO)
+						printf("%s", _result);
 				}
 			}
 		}
