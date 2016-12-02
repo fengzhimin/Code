@@ -30,8 +30,10 @@ int Is_Dir(const char *path)
 
 	if(S_ISDIR(st.st_mode))
 		return -1;
-	else
+	else if(S_ISREG(st.st_mode))
 		return -2;
+	else
+		return -3;
 }
 
 int JudgeConfFile(char *path, const char type[][20], char configfilepath[][FILE_PATH_MAX_LENGTH], int point)
@@ -67,12 +69,12 @@ int FindFileByType(char *path, const char type[][20], char configfilepath[][FILE
 		temp1[_size - 1] = '\0';
 		_size--;
 	}
-	if(Is_Dir(temp1) == -2)   //判断输入的是否为文件夹
+	if(Is_Dir(temp1) >= 0)   //判断是否出错
+		return -3;
+	else if(Is_Dir(temp1) == -2)   //判断用户输入的是否为一个配置文件的绝对路径
 	{
-		char error_info[200];
-		sprintf(error_info, "%s%s", temp1, " 不是一个文件夹!\n");
-		RecordLog(error_info);
-		return -2;
+		strcpy(configfilepath[point++], path);   
+		return point;
 	}
 
 	DIR *pdir;
@@ -94,7 +96,7 @@ int FindFileByType(char *path, const char type[][20], char configfilepath[][FILE
 		{
 			int _temp = 0;
 			_temp = FindFileByType(temp, type, configfilepath, point);   //是子目录则进行继续查找
-			if(_temp >= 0)
+			if(_temp >= 0)   //通过返回值判断是否出错
 				point = _temp;         //更新point索引
 		}
 		else

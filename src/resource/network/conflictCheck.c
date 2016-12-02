@@ -18,7 +18,7 @@
 #include <string.h>
 #include <errno.h>
 
-bool CheckPort(char *_portFileName)
+int CheckPort(char *_portFileName)
 {
 	char *dirCatalog = "resource/network";
 	struct dirent *pdirent;
@@ -28,7 +28,7 @@ bool CheckPort(char *_portFileName)
 		char error_info[200];
 		sprintf(error_info, "%s%s", dirCatalog, " 不是一个文件夹!\n");
 		RecordLog(error_info);
-		return false;
+		return 0;
 	}
 	pdir = opendir(dirCatalog);
 	if(pdir == NULL)       //打开文件夹失败
@@ -36,13 +36,15 @@ bool CheckPort(char *_portFileName)
 		char error_info[200];
 		sprintf(error_info, "%s%s%s%s%s", "打开文件夹: ", dirCatalog, " 失败！ 错误信息： ", strerror(errno), "\n");
 		RecordLog(error_info);
-		return false;
+		return 0;
 	}
+
+	int _ret_checkResult = 1;
 	char _portFilePath[100];
 	sprintf(_portFilePath, "%s/%s", dirCatalog, _portFileName);
 	int _portValue[50];
 	if(!GetPortValue(_portFilePath, _portValue, 50))   //获取要检查软件的端口值
-		return false;
+		return 0;
 	char temp[FILE_PATH_MAX_LENGTH];
 	while((pdirent = readdir(pdir)) != NULL)
 	{
@@ -84,6 +86,8 @@ bool CheckPort(char *_portFileName)
 
 					if(2 == SHOWINFO || 3 == SHOWINFO)
 						printf("%s", _result);
+
+					_ret_checkResult = -1;
 				}
 			}
 		}
@@ -91,5 +95,5 @@ bool CheckPort(char *_portFileName)
 
 	closedir(pdir);
 
-	return true;
+	return _ret_checkResult;
 }

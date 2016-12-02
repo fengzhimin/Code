@@ -32,5 +32,10 @@ int main(int argc, char* argv[])
 	char _portConfigPath[100];
 	sprintf(_portConfigPath, "%s/%s%s", "resource/network", argv[2], ".port");  //端口文件后缀名
 	GetPortInfoFromConfigFile(_configInfo, configInfo_Num, _portConfigPath);
-	CheckPort(strrchr(_portConfigPath, '/')+sizeof(char));   //传递存放端口的文件名
+	if(1 == CheckPort(strrchr(_portConfigPath, '/')+sizeof(char)))   //传递存放端口的文件名
+	{
+		printf("软件: %s 可以正确运行！\n", argv[2]);
+	}
+
+	return 0;
 }
