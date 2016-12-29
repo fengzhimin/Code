@@ -56,9 +56,9 @@ int ReadLine(FILE *fd, char *data)
 			RecordLog("配置文件的一行数据大小超过预设大小!\n");
 			return -1;
 		}
-		data[n++] = _ch;
 		if(_ch == '\n')
 			return -1;
+		data[n++] = _ch;
 	}
 
 	return 0;

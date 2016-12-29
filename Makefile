@@ -12,7 +12,7 @@ all : subdirs $(SUBDIRS)
 
 debug :
 	make compile=debug
-	sudo $(DEBUGTOOL) $(TARGET)
+	#sudo $(DEBUGTOOL) $(TARGET)
 
 clean :
 	-rm -f $(TARGET) $(OBJDIRS)/*

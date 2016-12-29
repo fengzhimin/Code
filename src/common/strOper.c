@@ -167,3 +167,62 @@ int ExtractNumFromStr(char *_str)
 	else
 		return -1;
 }
+
+int cutStrByLabel(char *str, char ch, char subStr[][MAX_SUBSTR], int subStrLength)
+{
+	//将subStr清空
+	for(int i = 0; i < subStrLength; i++)
+		memset(subStr[i], 0, MAX_SUBSTR);
+
+	int _strLength = strlen(str);
+	char *pstr = &str[0];
+	int _ret_subNum = 0;
+	int j = 0;
+	for(int i = 0; i < _strLength; i++)
+	{
+		if(str[i] == ch)
+		{
+			if((i-j-1) >= MAX_SUBSTR)
+			{
+				RecordLog("子字符串的长度超过最大存放子串数组的大小!\n");
+				strncpy(subStr[_ret_subNum], pstr, MAX_SUBSTR-1);
+			}
+			else
+				strncpy(subStr[_ret_subNum], pstr, i-j);
+			j = i + 1;
+			pstr = &str[j];
+			_ret_subNum++;
+			if(subStrLength == (_ret_subNum+1))    //判断要截取的子串个数是否小于存放子串的数组大小
+				break;
+		}
+	}
+
+	//将最后一部分字符串拷贝出来
+	if(strlen(pstr) >= (MAX_SUBSTR+1))
+	{
+		RecordLog("子字符串的长度超过最大存放子串数组的大小!\n");
+		strncpy(subStr[_ret_subNum], pstr, MAX_SUBSTR-1);
+	}
+	else
+		strcpy(subStr[_ret_subNum], pstr);
+
+	return _ret_subNum+1;
+}
+
+void removeChar(char *str, char ch)
+{
+	int _length = strlen(str);
+	char *temp = malloc(sizeof(char)*_length);
+	memset(temp, 0, _length);
+	strcpy(temp, str);
+	memset(str, 0, _length);
+	int j = 0;
+	for(int i = 0; i < _length; i++)
+	{
+		if(temp[i] == ch)
+			continue;
+		else
+			str[j++] = temp[i];
+	}
+}
+

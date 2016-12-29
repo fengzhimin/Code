@@ -18,8 +18,50 @@
 #include "config.h"
 #include "resource/network/port.h"
 #include "resource/network/conflictCheck.h"
+#include "running/monitor.h"
+#include "running/resource.h"
 
 int main(int argc, char* argv[])
+{
+	char * str = "si tr:s tr:str:  str";
+	char substr[5][MAX_SUBSTR];
+	int ret = cutStrByLabel(str, ':', substr, 5);
+	for(int i = 0; i < ret; i++)
+	{
+		removeChar(substr[i], ' ');
+		printf("%s\n", substr[i]);
+	}
+
+	char path[200];
+	char *name = "compiz";
+	int ret1 = getStatusPathByName(name, path);
+	if(ret1 == 1)
+		printf("apache2 Path Is: %s\n", path);
+	else
+		printf("ret1 = %d\n", ret1);
+	sleep(1);
+	while(1)
+	{
+		system("clear");
+		printf("%10s\t%10s\t%10s\t%10s\t%10s\t%10s\t%10s\t%10s\n", "Name", "Pid", "PPid", "CPU(%)", "MEM(%)", "VM", "PV", "State");
+		char info[8][MAX_INFOLENGTH];
+		ret1 = getProgressInfo(path, info);
+		if(ret == 1)
+			printf("getProgressInfo ret = %d\n", ret1);
+		for(int i = 0; i < 8; i++)
+		{
+			printf("%10s\t", info[i]);
+		}
+		printf("\n");
+		sleep(1);
+	}
+
+	return 0;
+}
+
+/*
+ * 检查端口冲突的案例
+int main(int argc, char *argv[])
 {
 	char configfilepath[CONFIG_FILE_MAX_NUM][FILE_PATH_MAX_LENGTH];
 	for(int i = 0; i < CONFIG_FILE_MAX_NUM; i++)
@@ -39,3 +81,4 @@ int main(int argc, char* argv[])
 
 	return 0;
 }
+*/

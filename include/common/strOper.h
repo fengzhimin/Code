@@ -1,7 +1,7 @@
 /******************************************************
 * Author       : fengzhimin
 * Create       : 2016-11-09 11:40
-* Last modified: 2016-11-30 11:53
+* Last modified: 2016-12-29 16:20
 * Email        : 374648064@qq.com
 * Filename     : strOper.h
 * Description  : 字符串处理函数
@@ -75,4 +75,27 @@ int GetConfigInfoFromConfigFile(ConfigInfo _configInfo[], char _type[][CONFIG_KE
  * @para _str: 要被提取的字符串
 ***********************************/
 int ExtractNumFromStr(char *_str);
+
+
+/**********************************
+ * func: 通过字符ch来拆分字符串
+ * return: 0 = 不可拆分   拆分后子字符串的个数 > 0
+ * @para str: 要被拆分的字符串
+ * @para ch: 分隔字符
+ * @para subStr: 存放拆分后的子字符串的数组
+ * @para subStrLength: subStr的大小
+ * example: str = str1:str2:str3  --->  ch = ':'时 subStr = str1 str2 str3
+***********************************/
+int cutStrByLabel(char *str, char ch, char subStr[][MAX_SUBSTR], int subStrLength);
+
+
+/**********************************
+ * func: 移除字符串中所有的指定字符
+ * return: void
+ * @para str: 处理的字符串
+ * @para ch: 要被移除的字符
+ * example: str = "1 2 3" ch = ' '  ------>  str = "123"
+***********************************/
+void removeChar(char *str, char ch);
+
 #endif
