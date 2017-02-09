@@ -232,11 +232,14 @@ int GetSubStrNum(char *str, char *substr)
 	char *temp = str;
 	while(temp != NULL)
 	{
-		temp = strcasestr(str, substr);
+		temp = strcasestr(temp, substr);
 		if(temp != NULL)
+		{
 			++ret_num;
+			++temp;
+		}
 		else
-			temp++;
+			break;
 	}
 
 	return ret_num;

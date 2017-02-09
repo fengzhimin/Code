@@ -23,9 +23,12 @@
 
 int main(int argc, char *argv[])
 {
-	char *temp = "malloc 11 mallo";
+	printf("start\n");
+	char *temp = "maloc 11 mallc";
 	int ret = GetSubStrNum(temp, "malloc");
 	printf("%d\n", ret);
+
+	return 0;
 }
 
 /**动态监视进程的资源使用情况
