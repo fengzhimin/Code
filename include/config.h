@@ -1,7 +1,7 @@
 /******************************************************
 * Author       : fengzhimin
 * Create       : 2016-11-06 00:44
-* Last modified: 2016-12-29 20:45
+* Last modified: 2017-02-07 12:48
 * Email        : 374648064@qq.com
 * Filename     : config.h
 * Descrip:q
@@ -38,6 +38,14 @@ extern char note_symbol[][10];    //注释符号
  * return:　个数
 ******************************/
 int GetNote_SymbolNum();
+
+extern char mem_func[][20];
+
+/*****************************
+ * function: 获取mem_func的个数
+ * return: 个数
+******************************/
+int GetMemFunc_Num();
 
 
 #define CONFIG_KEY_MAX_NUM       50     //配置项key的最大值

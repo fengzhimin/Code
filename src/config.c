@@ -1,7 +1,7 @@
 /******************************************************
 * Author       : fengzhimin
 * Create       : 2016-11-07 12:27
-* Last modified: 2016-11-09 11:38
+* Last modified: 2017-02-07 12:42
 * Email        : 374648064@qq.com
 * Filename     : config.c
 * Description  : 用于定义全局变量
@@ -17,11 +17,19 @@ int GetConfig_TypeNum()
 	return sizeof(config_type)/sizeof(config_type[0]);
 }
 
-
+//注释符号
 char note_symbol[][10] = {"#", "%", "\""};
 
 int GetNote_SymbolNum()
 {
 	return sizeof(note_symbol)/sizeof(note_symbol[0]);
+}
+
+//关于操作内存的函数
+char mem_func[][20] = {"malloc", "new"};
+
+int GetMemFunc_Num()
+{
+	return sizeof(mem_func)/sizeof(mem_func[0]);
 }
 

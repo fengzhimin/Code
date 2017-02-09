@@ -1,7 +1,7 @@
 /******************************************************
 * Author       : fengzhimin
 * Create       : 2016-11-11 09:02
-* Last modified: 2016-11-30 11:44
+* Last modified: 2017-02-07 13:07
 * Email        : 374648064@qq.com
 * Filename     : strOper.c
 * Description  : 
@@ -226,3 +226,18 @@ void removeChar(char *str, char ch)
 	}
 }
 
+int GetSubStrNum(char *str, char *substr)
+{
+	int ret_num = 0;
+	char *temp = str;
+	while(temp != NULL)
+	{
+		temp = strcasestr(str, substr);
+		if(temp != NULL)
+			++ret_num;
+		else
+			temp++;
+	}
+
+	return ret_num;
+}

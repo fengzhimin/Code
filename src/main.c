@@ -1,7 +1,7 @@
 /******************************************************
 * Author       : fengzhimin
 * Create       : 2016-11-30 10:48
-* Last modified: 2016-11-30 10:48
+* Last modified: 2017-02-07 12:25
 * Email        : 374648064@qq.com
 * Filename     : main.c
 * Description  : 参数说明：argv[1]: 是要检查软件的配置文件目录
@@ -21,6 +21,14 @@
 #include "running/monitor.h"
 #include "running/resource.h"
 
+int main(int argc, char *argv[])
+{
+	char *temp = "malloc 11 mallo";
+	int ret = GetSubStrNum(temp, "malloc");
+	printf("%d\n", ret);
+}
+
+/**动态监视进程的资源使用情况
 int main(int argc, char* argv[])
 {
 	char * str = "si tr:s tr:str:  str";
@@ -58,6 +66,7 @@ int main(int argc, char* argv[])
 
 	return 0;
 }
+*/
 
 /*
  * 检查端口冲突的案例

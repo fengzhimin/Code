@@ -1,7 +1,7 @@
 /******************************************************
 * Author       : fengzhimin
 * Create       : 2016-11-09 11:40
-* Last modified: 2016-12-29 16:20
+* Last modified: 2017-02-07 12:57
 * Email        : 374648064@qq.com
 * Filename     : strOper.h
 * Description  : 字符串处理函数
@@ -97,5 +97,14 @@ int cutStrByLabel(char *str, char ch, char subStr[][MAX_SUBSTR], int subStrLengt
  * example: str = "1 2 3" ch = ' '  ------>  str = "123"
 ***********************************/
 void removeChar(char *str, char ch);
+
+/**********************************
+ * func: 获取字符串中子字符串的个数
+ * return: int
+ * @para str: 原字符串
+ * @para substr: 要查找的字符串
+ * example: str = "str123str23" substr = "str"  -----> return = 2
+***********************************/
+int GetSubStrNum(char *str, char *substr);
 
 #endif
