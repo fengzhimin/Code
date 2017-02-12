@@ -1,7 +1,7 @@
 /******************************************************
 * Author       : fengzhimin
 * Create       : 2016-11-09 11:40
-* Last modified: 2017-02-07 12:57
+* Last modified: 2017-02-12 19:58
 * Email        : 374648064@qq.com
 * Filename     : strOper.h
 * Description  : 字符串处理函数
@@ -79,7 +79,7 @@ int ExtractNumFromStr(char *_str);
 
 /**********************************
  * func: 通过字符ch来拆分字符串
- * return: 0 = 不可拆分   拆分后子字符串的个数 > 0
+ * return: 1 = 不可拆分   拆分后子字符串的个数 > 1
  * @para str: 要被拆分的字符串
  * @para ch: 分隔字符
  * @para subStr: 存放拆分后的子字符串的数组
@@ -90,9 +90,17 @@ int cutStrByLabel(char *str, char ch, char subStr[][MAX_SUBSTR], int subStrLengt
 
 
 /**********************************
+ * func: 去掉字符串中开头的所有的空格和制表符
+ * return: void
+ * @para str: 要被处理的字符串数组
+ * example: str = "  str"    ---->    str = "str"
+***********************************/
+void removeBeginSpace(char *str);
+
+/**********************************
  * func: 移除字符串中所有的指定字符
  * return: void
- * @para str: 处理的字符串
+ * @para str: 处理的字符串数组
  * @para ch: 要被移除的字符
  * example: str = "1 2 3" ch = ' '  ------>  str = "123"
 ***********************************/

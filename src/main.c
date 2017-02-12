@@ -20,14 +20,35 @@
 #include "resource/network/conflictCheck.h"
 #include "running/monitor.h"
 #include "running/resource.h"
+#include "funcOper.h"
 
 int main(int argc, char *argv[])
 {
 	printf("start\n");
-	char *temp = "maloc 11 mallc";
-	int ret = GetSubStrNum(temp, "malloc");
-	printf("%d\n", ret);
-
+	char temp[LINE_CHAR_MAX_NUM];// = " * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)";
+	FILE *fd = OpenFile(argv[1], "r");
+	/*
+	if(IsStartFunc(temp))
+	{
+		char funcName[MAX_FUNCNAME];
+		GetFuncName(temp, funcName);
+		printf("funcName = %s\n", funcName);
+	}
+	*/
+	while(1)
+	{
+		memset(temp, 0, LINE_CHAR_MAX_NUM);
+		if(ReadLine(fd, temp) != -1)
+			break;
+		if(IsStartFunc(temp))
+		{
+			char funcName[MAX_FUNCNAME];
+			GetFuncName(temp, funcName);
+			printf("funcName = %s\n", funcName);
+		}
+	}
+	
+	
 	return 0;
 }
 

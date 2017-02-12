@@ -23,6 +23,8 @@
 
 #define LINE_CHAR_MAX_NUM      1024   //一行最大字符个数
 
+#define MAX_FUNCNAME          50    //函数名称的最大字符个数
+
 extern char config_type[][20];    //配置文件的类型
 
 /*****************************
