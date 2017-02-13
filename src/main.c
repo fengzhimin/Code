@@ -25,8 +25,12 @@
 int main(int argc, char *argv[])
 {
 	printf("start\n");
-	char temp[LINE_CHAR_MAX_NUM];// = " * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)";
-	FILE *fd = OpenFile(argv[1], "r");
+	FuncScore funcScore[100];
+	int ret = GetFuncScore(argv[1], funcScore, 100);
+	printf("ret = %d\n", ret);
+	for(int i = 0; i < ret; i++)
+		printf("funcName = %20s  memScore = %d  devScore = %d  netScore = %d  procScore = %d\n", funcScore[i].funcName, \
+				funcScore[i].memScore, funcScore[i].devScore, funcScore[i].netScore, funcScore[i].procScore);
 	/*
 	if(IsStartFunc(temp))
 	{
@@ -34,7 +38,7 @@ int main(int argc, char *argv[])
 		GetFuncName(temp, funcName);
 		printf("funcName = %s\n", funcName);
 	}
-	*/
+	
 	while(1)
 	{
 		memset(temp, 0, LINE_CHAR_MAX_NUM);
@@ -47,7 +51,7 @@ int main(int argc, char *argv[])
 			printf("funcName = %s\n", funcName);
 		}
 	}
-	
+	*/
 	
 	return 0;
 }

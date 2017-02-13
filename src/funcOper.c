@@ -1,15 +1,16 @@
 /******************************************************
 * Author       : fengzhimin
 * Create       : 2017-02-09 20:06
-* Last modified: 2017-02-12 23:27
+* Last modified: 2017-02-13 16:39
 * Email        : 374648064@qq.com
 * Filename     : funcOper.c
 * Description  : 对函数操作的源文件
 ******************************************************/
 
 #include "funcOper.h"
-#include "config.h"
 #include "common/strOper.h"
+#include "common/fileOper.h"
+#include "log/logOper.h"
 #include <string.h>
 
 bool IsStartFunc(char *str)
@@ -121,7 +122,59 @@ bool GetFuncName(char *str, char *funcName)
 			else
 				strcpy(funcName, temp_funcName);
 
+			//处理提取失败
+			removeBeginSpace(funcName);
+			if(funcName[0] == 0)
+				return false;
+
 			return true;
 		}
 	}
+}
+
+int GetFuncScore(char *filePath, FuncScore *funcScore, int size)
+{
+	FILE *fd = OpenFile(filePath, "r");
+	if(fd == NULL)
+	{
+		char error_info[200];
+		sprintf(error_info, "打开文件%s%s", filePath, "失败！\n");
+		RecordLog(error_info);
+		return -1;
+	}
+	for(int i = 0; i < size; i++)
+	{
+		//初始化funcScore
+		memset(funcScore[i].funcName, 0, MAX_FUNCNAME);
+		funcScore[i].memScore = 0;
+		funcScore[i].procScore = 0;
+		funcScore[i].devScore = 0;
+		funcScore[i].netScore = 0;
+	}
+	char temp[LINE_CHAR_MAX_NUM];
+	int index = 0;
+	while(1)
+	{
+		memset(temp, 0, LINE_CHAR_MAX_NUM);
+		if(ReadLine(fd, temp) != -1)
+			break;
+		if(IsStartFunc(temp))
+		{
+			if(index == (size - 1))
+			{	
+				char error_info[200];
+				sprintf(error_info, "警告: 文件 %s%s\n", filePath, "中的函数个数大于预设的存放函数分数的数组!");
+				RecordLog(error_info);
+				break;
+			}
+			else if(GetFuncName(temp, funcScore[index].funcName))
+			{
+				index++;
+			}
+		}
+	}
+
+	CloseFile(fd);
+
+	return index;
 }

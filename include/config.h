@@ -1,7 +1,7 @@
 /******************************************************
 * Author       : fengzhimin
 * Create       : 2016-11-06 00:44
-* Last modified: 2017-02-07 12:48
+* Last modified: 2017-02-13 15:59
 * Email        : 374648064@qq.com
 * Filename     : config.h
 * Descrip:q
@@ -89,6 +89,19 @@ typedef struct ProcessCpuTime
 	unsigned int cutime;
 	unsigned int cstime;
 } Process_Cpu_Occupy_t;
+
+
+/***************************
+ * function: 定义函数打分情况
+****************************/
+typedef struct FuncResourceScore
+{
+	char funcName[MAX_FUNCNAME];
+	int memScore;    //内存的分数
+	int procScore;   //进程的分数
+	int devScore;    //设备的分数
+	int netScore;    //网络的分数
+} FuncScore;
 
 #endif
 
