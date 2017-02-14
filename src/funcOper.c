@@ -1,7 +1,7 @@
 /******************************************************
 * Author       : fengzhimin
 * Create       : 2017-02-09 20:06
-* Last modified: 2017-02-13 16:39
+* Last modified: 2017-02-14 13:24
 * Email        : 374648064@qq.com
 * Filename     : funcOper.c
 * Description  : 对函数操作的源文件
@@ -54,7 +54,7 @@ bool IsStartFunc(char *str)
 						if(ret == 2)
 						{
 							if(strcasecmp(temp4[0], "unsigned") != 0 && strcasecmp(temp4[0], "signed") != 0 \
-									&& strcasecmp(temp4[0], "const") != 0)
+									&& strcasecmp(temp4[0], "const") != 0 && strcasecmp(temp4[0], "struct") != 0)
 								return false;
 						}
 					}
@@ -73,7 +73,7 @@ bool IsStartFunc(char *str)
 						if(ret == 2)
 						{
 							if(strcasecmp(temp4[0], "unsigned") != 0 && strcasecmp(temp4[0], "signed") != 0 \
-									&& strcasecmp(temp4[0], "const") != 0)
+									&& strcasecmp(temp4[0], "const") != 0 && strcasecmp(temp4[0], "struct") != 0)
 								return false;
 						}
 					}
@@ -103,7 +103,7 @@ bool GetFuncName(char *str, char *funcName)
 		else
 		{
 			char temp2[2][MAX_SUBSTR];
-			ret = cutStrByLabel(temp1[0], ' ', temp2, 2);   //处理unsigned int func1()类型的函数
+			ret = cutStrByLabel(temp1[0], ' ', temp2, 2);   //处理unsigned int func1()类型的函数或者struct type func1()
 			if(ret != 2)
 				strcpy(temp_funcName, temp1[0]);
 			else
@@ -153,6 +153,7 @@ int GetFuncScore(char *filePath, FuncScore *funcScore, int size)
 	}
 	char temp[LINE_CHAR_MAX_NUM];
 	int index = 0;
+	bool point = false;   //记录是否为函数的内容   true为函数的内容  false不是函数的内容
 	while(1)
 	{
 		memset(temp, 0, LINE_CHAR_MAX_NUM);
@@ -170,6 +171,35 @@ int GetFuncScore(char *filePath, FuncScore *funcScore, int size)
 			else if(GetFuncName(temp, funcScore[index].funcName))
 			{
 				index++;
+				point = true;
+			}
+		}
+		else if(point)
+		{
+			int i;
+			//查找关于内存的函数`
+			for(i = 0; i < GetMemFunc_Num(); i++)
+			{
+				if(strstr(temp, mem_func[i]) != NULL)
+					funcScore[index-1].memScore++;
+			}
+			//查找关于进程的函数
+			for(i = 0; i < GetProcFunc_Num(); i++)
+			{
+				if(strstr(temp, proc_func[i]) != NULL)
+					funcScore[index-1].procScore++;
+			}
+			//查找关于网络的函数
+			for(i = 0; i < GetNetFunc_Num(); i++)
+			{
+				if(strstr(temp, net_func[i]) != NULL)
+					funcScore[index-1].netScore++;
+			}
+			//查找关于设备操作的函数
+			for(i = 0; i < GetDevFunc_Num(); i++)
+			{
+				if(strstr(temp, dev_func[i]) != NULL)
+					funcScore[index-1].devScore++;
 			}
 		}
 	}

@@ -1,7 +1,7 @@
 /******************************************************
 * Author       : fengzhimin
 * Create       : 2016-11-30 10:48
-* Last modified: 2017-02-07 12:25
+* Last modified: 2017-02-14 13:35
 * Email        : 374648064@qq.com
 * Filename     : main.c
 * Description  : 参数说明：argv[1]: 是要检查软件的配置文件目录
@@ -25,36 +25,24 @@
 int main(int argc, char *argv[])
 {
 	printf("start\n");
+
+	return 0;
+}
+
+/**对文件中的函数进行打分操作
+int main(int argc, char *argv[])
+{
+	printf("start\n");
 	FuncScore funcScore[100];
 	int ret = GetFuncScore(argv[1], funcScore, 100);
 	printf("ret = %d\n", ret);
 	for(int i = 0; i < ret; i++)
 		printf("funcName = %20s  memScore = %d  devScore = %d  netScore = %d  procScore = %d\n", funcScore[i].funcName, \
 				funcScore[i].memScore, funcScore[i].devScore, funcScore[i].netScore, funcScore[i].procScore);
-	/*
-	if(IsStartFunc(temp))
-	{
-		char funcName[MAX_FUNCNAME];
-		GetFuncName(temp, funcName);
-		printf("funcName = %s\n", funcName);
-	}
-	
-	while(1)
-	{
-		memset(temp, 0, LINE_CHAR_MAX_NUM);
-		if(ReadLine(fd, temp) != -1)
-			break;
-		if(IsStartFunc(temp))
-		{
-			char funcName[MAX_FUNCNAME];
-			GetFuncName(temp, funcName);
-			printf("funcName = %s\n", funcName);
-		}
-	}
-	*/
 	
 	return 0;
 }
+*/
 
 /**动态监视进程的资源使用情况
 int main(int argc, char* argv[])

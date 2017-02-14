@@ -1,7 +1,7 @@
 /******************************************************
 * Author       : fengzhimin
 * Create       : 2016-11-06 00:44
-* Last modified: 2017-02-13 15:59
+* Last modified: 2017-02-14 13:16
 * Email        : 374648064@qq.com
 * Filename     : config.h
 * Descrip:q
@@ -41,7 +41,7 @@ extern char note_symbol[][10];    //注释符号
 ******************************/
 int GetNote_SymbolNum();
 
-extern char mem_func[][20];
+extern char mem_func[][20];   //关于内存操作的函数
 
 /*****************************
  * function: 获取mem_func的个数
@@ -49,6 +49,29 @@ extern char mem_func[][20];
 ******************************/
 int GetMemFunc_Num();
 
+extern char proc_func[][20];  //关于进程操作的函数
+
+/*****************************
+ * function: 获取proc_func的个数
+ * return: 个数
+*****************************/
+int GetProcFunc_Num();
+
+extern char net_func[][20];   //关于网络操作的函数
+
+/*****************************
+ * function: 获取net_func的个数
+ * return: 个数
+*****************************/
+int GetNetFunc_Num();
+
+extern char dev_func[][20];   //关于操作设备的函数
+
+/*****************************
+ * function: 获取dev_func的个数
+ * return: 个数
+*****************************/
+int GetDevFunc_Num();
 
 #define CONFIG_KEY_MAX_NUM       50     //配置项key的最大值
 #define CONFIG_VALUE_MAX_NUM     30    //配置项value的最大值
